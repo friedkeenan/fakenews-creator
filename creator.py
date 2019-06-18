@@ -36,7 +36,7 @@ if __name__ == "__main__":
         print("and `B64: <b64>` with the base64 decoded bytes)")
     else:
         with open(sys.argv[1]) as f:
-            to_pack = json.loads(f.read())
+            to_pack = json.load(f)
 
         parse_dict(to_pack, os.path.dirname(sys.argv[1]))
 
@@ -47,4 +47,4 @@ if __name__ == "__main__":
             filename += ".msgpack"
 
         with open(filename, "wb") as f:
-            f.write(msgpack.packb(to_pack, use_bin_type=True))
+            msgpack.pack(to_pack, f, use_bin_type=True)
